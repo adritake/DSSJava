@@ -52,7 +52,7 @@ public class FarmaciaFacade {
 			pstmt.setFloat(3, f.getLongitud());
 			
 			pstmt.execute();
-			this.con.close();
+			//this.con.close();
 			return true;
 		}catch(SQLException e) {
 			e.printStackTrace();
