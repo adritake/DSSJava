@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import facade.FarmaciaFacade;
 import facade.OrderFacade;
 import facade.ProductoFacade;
+import facade.UsuarioFacade;
 import servidor.Farmacia;
 import servidor.Order;
 import servidor.Producto;
@@ -64,7 +65,7 @@ public class MainTest {
 			System.out.println("Order -> " + o.getOrderID() + " " + o.getProducto().getProductoID() + " " +o.getUsuario().getNombreUsuario());
 		
 		orfac.close();
-		*/
+		
 		
 		ProductoFacade profac = new ProductoFacade();
 		Producto p = new Producto(123, "Paracetamol");
@@ -84,6 +85,27 @@ public class MainTest {
 			System.out.println(pr.getProductoID() + " " + pr.getNombre());
 		
 		profac.close();
+		*/
+		
+		UsuarioFacade userfac = new UsuarioFacade();
+		Usuario user1 = new Usuario("Pepe", "PepeUser","asdasd@asdad","psswrd");
+		Usuario user2 = new Usuario("Pepe", "PepeUser2","asdasd@asdad","psswrd");
+		Usuario user3 = new Usuario("Pepe", "PepeUser3","asdasd@asdad","psswrd");
+
+		//userfac.newUsuario(user2);
+		//userfac.newUsuario(user3);
+		
+		Usuario user2updated = new Usuario("PepeUpdated", "PepeUser2", "updatedemail@asdad","updatedpassword");
+		userfac.updateUsuario(user2updated);
+		
+		Usuario user3deleted = new Usuario("","PepeUser3","","");
+		userfac.deleteUsuario(user3deleted);
+		
+		ArrayList<Usuario> usuarios = userfac.getUsuarios();
+		System.out.println("Usuarios-----------");
+		for(Usuario u: usuarios)
+			System.out.println(u.getNombre()+ " " + u.getNombreUsuario() + " " + u.getCorreo()+ " " + u.getContrasena());
+
 	}
 	
 }
