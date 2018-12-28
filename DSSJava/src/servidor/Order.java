@@ -12,7 +12,13 @@ public class Order {
 		this.usuario  = usuario;
 	}
 	
-	public int getorderID() {
+	public Order(int orderID, int productoID, String username) {
+		this.orderID  = orderID;
+		this.producto = new Producto(productoID,"");
+		this.usuario  = new Usuario("",username,"","");
+	}
+	
+	public int getOrderID() {
 		return orderID;
 	}
 	

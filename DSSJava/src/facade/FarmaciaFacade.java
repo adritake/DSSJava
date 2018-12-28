@@ -73,7 +73,7 @@ public class FarmaciaFacade {
 			pstmt.setInt(4, f.getID());
 			pstmt.execute();
 			
-			this.con.close();
+			//this.con.close();
 			return true;
 			
 		}catch(SQLException e) {
@@ -90,7 +90,7 @@ public class FarmaciaFacade {
 			pstmt.setInt(1, f.getID());
 			pstmt.execute();
 			
-			this.con.close();
+			//this.con.close();
 			return true;
 			
 		}catch(SQLException e) {
@@ -115,5 +115,14 @@ public class FarmaciaFacade {
 			e.printStackTrace();
 		}
 		return farmacias;
+	}
+	
+	public void close() {
+		try {
+			this.con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
