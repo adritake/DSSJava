@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import facade.FarmaciaFacade;
 import facade.OrderFacade;
+import facade.ProductoFacade;
 import servidor.Farmacia;
 import servidor.Order;
 import servidor.Producto;
@@ -12,7 +13,7 @@ import servidor.Usuario;
 public class MainTest {
 	
 	public static void main(String[] args) {
-		
+		/*
 		FarmaciaFacade farmafac = new FarmaciaFacade();
 		Farmacia farma = new Farmacia(5,"Farmacia test", 1, 2);
 		
@@ -63,6 +64,26 @@ public class MainTest {
 			System.out.println("Order -> " + o.getOrderID() + " " + o.getProducto().getProductoID() + " " +o.getUsuario().getNombreUsuario());
 		
 		orfac.close();
+		*/
+		
+		ProductoFacade profac = new ProductoFacade();
+		Producto p = new Producto(123, "Paracetamol");
+		
+		profac.newProducto(p);
+		
+		Producto pDelete = new Producto(2,"");
+		profac.deleteProducto(pDelete);
+		
+		Producto pUpdate = new Producto(4,"Paracetamol updated");
+		
+		profac.updateProducto(pUpdate);
+		
+		ArrayList<Producto> productos = profac.getProductos();
+		System.out.println("Productos ----------------");
+		for(Producto pr: productos)
+			System.out.println(pr.getProductoID() + " " + pr.getNombre());
+		
+		profac.close();
 	}
 	
 }
