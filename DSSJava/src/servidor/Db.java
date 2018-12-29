@@ -21,6 +21,9 @@ public class Db {
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());
 		}
+		catch(Exception e) {
+			System.out.println("No se ha podido conectar a la base de datos");
+		}
 		
 	}
 	public Connection getDB() {

@@ -45,7 +45,7 @@ public class UsuarioFacade {
 		String insertarUsuario = "INSERT INTO USUARIO"
 				+ "(USERNAME,NOMBRE, CORREO, CONTRASENA) VALUES"
 				+ "(?,?,?,?)";
-		System.out.println(insertarUsuario);
+		//System.out.println(insertarUsuario);
 
 		try {
 			pstmt = this.con.prepareStatement(insertarUsuario);
@@ -103,20 +103,19 @@ public class UsuarioFacade {
 	
 	public ArrayList<Usuario> getUsuarios(){
 		String getUsuarios = "SELECT * FROM USUARIO";
-		ArrayList<Usuario> productos = new ArrayList<Usuario>();
-		
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		try {
 			stmt = this.con.createStatement();
 			this.rs = stmt.executeQuery(getUsuarios);
 			
 			while(rs.next()) {
-				productos.add(new Usuario(rs.getString("NOMBRE"),rs.getString("USERNAME"),rs.getString("CORREO"), rs.getString("CONTRASENA")));
+				usuarios.add(new Usuario(rs.getString("NOMBRE"),rs.getString("USERNAME"),rs.getString("CORREO"), rs.getString("CONTRASENA")));
 			}
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return productos;
+		return usuarios;
 	}
 	
 	public void close() {

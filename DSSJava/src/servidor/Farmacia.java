@@ -31,5 +31,10 @@ public class Farmacia {
 	public int getID() {
 		return ID;
 	}
+	
+	@Override
+	public String toString() {
+		return "ID = " + ID + " Nombre = " + nombre + " Latitud = " + latitud + " Longitud = " + longitud;
+	}
 
 }

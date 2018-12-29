@@ -18,6 +18,18 @@
       <servlet-name>Usuario Servlet</servlet-name>
       <servlet-class>REST.Usuarios</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>Order Servlet</servlet-name>
+      <servlet-class>REST.Orders</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>Producto Servlet</servlet-name>
+      <servlet-class>REST.Productos</servlet-class>
+  </servlet>
+  
+  
+  
+  
   <servlet-mapping>
       <servlet-name>Farmacia Servlet</servlet-name>
       <url-pattern>/farmacia</url-pattern>
@@ -25,6 +37,14 @@
    <servlet-mapping>
       <servlet-name>Usuario Servlet</servlet-name>
       <url-pattern>/usuario</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+      <servlet-name>Order Servlet</servlet-name>
+      <url-pattern>/order</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+      <servlet-name>Producto Servlet</servlet-name>
+      <url-pattern>/producto</url-pattern>
    </servlet-mapping>
    
    

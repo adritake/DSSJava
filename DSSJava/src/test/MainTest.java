@@ -88,6 +88,7 @@ public class MainTest {
 		*/
 		
 		UsuarioFacade userfac = new UsuarioFacade();
+
 		Usuario user1 = new Usuario("Pepe", "PepeUser","asdasd@asdad","psswrd");
 		Usuario user2 = new Usuario("Pepe", "PepeUser2","asdasd@asdad","psswrd");
 		Usuario user3 = new Usuario("Pepe", "PepeUser3","asdasd@asdad","psswrd");
@@ -102,9 +103,12 @@ public class MainTest {
 		userfac.deleteUsuario(user3deleted);
 		
 		ArrayList<Usuario> usuarios = userfac.getUsuarios();
+
 		System.out.println("Usuarios-----------");
 		for(Usuario u: usuarios)
 			System.out.println(u.getNombre()+ " " + u.getNombreUsuario() + " " + u.getCorreo()+ " " + u.getContrasena());
+		
+		userfac.close();
 
 	}
 	

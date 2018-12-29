@@ -1,19 +1,35 @@
 package REST;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import facade.UsuarioFacade;
+import servidor.Usuario;
+
 public class Usuarios extends HttpServlet {
 
+	UsuarioFacade userfac;
+	
+	public Usuarios() {
+		userfac = new UsuarioFacade();
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
         
-        request.getRequestDispatcher("/WEB-INF/ListaUsuarios.html").forward(request, response);
+		ArrayList<Usuario> usuarios = userfac.getUsuarios();
+		
+		
+		request.setAttribute("usuarios", usuarios);
+			
+		
+        request.getRequestDispatcher("/WEB-INF/ListaUsuarios.jsp").forward(request, response);
 
 	}
 	

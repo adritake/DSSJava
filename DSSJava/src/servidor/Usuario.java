@@ -46,4 +46,8 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 	
+	public String toString() {
+		return "Nombre= " + nombre + " UserName= " + nombreUsuario + " Correo = " + correo;
+	}
+	
 }

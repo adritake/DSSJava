@@ -30,4 +30,9 @@ public class Order {
 		return usuario;
 	}
 	
+	@Override
+	public String toString() {
+		return "ID = " + orderID + " Usuario = " + usuario.getNombreUsuario() + " Producto " + producto.getProductoID();
+	}
+	
 }
