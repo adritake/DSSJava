@@ -9,4 +9,23 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+      <servlet-name>Farmacia Servlet</servlet-name>
+      <servlet-class>REST.Farmacia</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>Usuario Servlet</servlet-name>
+      <servlet-class>REST.Usuarios</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>Farmacia Servlet</servlet-name>
+      <url-pattern>/farmacia</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+      <servlet-name>Usuario Servlet</servlet-name>
+      <url-pattern>/usuario</url-pattern>
+   </servlet-mapping>
+   
+   
 </web-app>
