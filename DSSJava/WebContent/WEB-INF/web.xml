@@ -24,6 +24,6 @@
     <!-- Map all the URLs to the Jersey ServletContainer -->
     <servlet-mapping>
         <servlet-name>Consorcio servlet</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 </web-app>

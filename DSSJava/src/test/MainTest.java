@@ -129,7 +129,7 @@ public class MainTest {
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
 		Client client = Client.create(clientConfig);
 		
-		WebResource servicio = client.resource(UriBuilder.fromUri("http://localhost:8080/DSSJava").build());
+		WebResource servicio = client.resource(UriBuilder.fromUri("http://localhost:8080/DSSJava/rest").build());
 
 		ClientResponse respuesta = servicio.path("producto").accept("application/json").type("application/json").put(ClientResponse.class,p);			
 		System.out.println(respuesta.getEntity(String.class));
