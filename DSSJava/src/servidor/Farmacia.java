@@ -8,6 +8,12 @@ public class Farmacia {
 	private float longitud;
 	private int ID;
 	
+	public Farmacia() {
+		this.ID       = 0;
+		this.nombre   = "";
+		this.latitud  = 0;
+		this.longitud = 0;
+	}
 	
 	public Farmacia(int ID, String nombre, float latitud, float longitud) {
 		this.ID       = ID;

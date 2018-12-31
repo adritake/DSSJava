@@ -7,11 +7,18 @@ public class Usuario {
 	private String correo;
 	private String contrasena;
 	
+	public Usuario() {
+		this.nombre        = "";
+		this.nombreUsuario = "";
+		this.correo        = "";
+		this.contrasena    = "";
+	}
+	
 	public Usuario(String nombre, String nombreUsuario, String correo, String contrasena) {
-		this.setNombre(nombre);
-		this.setNombreUsuario(nombreUsuario);
-		this.setCorreo(correo);
-		this.setContrasena(contrasena);
+		this.nombre        = nombre;
+		this.nombreUsuario = nombreUsuario;
+		this.correo        = correo;
+		this.contrasena    = contrasena;
 	}
 
 	public String getNombre() {

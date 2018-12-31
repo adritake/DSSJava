@@ -6,6 +6,12 @@ public class Order {
 	private Producto producto;
 	private Usuario usuario;
 	
+	public Order() {
+		this.orderID  = orderID;
+		this.producto = new Producto();
+		this.usuario  = new Usuario();
+	}
+	
 	public Order(int orderID, Producto producto, Usuario usuario) {
 		this.orderID  = orderID;
 		this.producto = producto;
