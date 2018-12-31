@@ -3,6 +3,7 @@ package REST;
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -37,9 +38,40 @@ public class Productos {
 	public Response addProducto(Producto pro) {
 		
 		
-		String result = pro.toString();
-				
-		return Response.status(201).entity(result).build();
+		boolean added = profac.newProducto(pro);
+			
+		if (added)
+			return Response.status(201).entity("Added").build();
+		else
+			return Response.status(409).entity("Could not add").build();
+
+	}
+	
+	@POST
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response updateProducto(Producto pro) {
+		
+		
+		boolean updated = profac.updateProducto(pro);
+		if (updated)
+			return Response.status(200).entity("Updated").build();
+		else
+			return Response.status(400).entity("Could not update").build();
+
+	}
+	
+	@DELETE
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response deleteProducto(Producto pro) {
+		
+		
+		boolean deleted = profac.deleteProducto(pro);
+		
+		if (deleted)
+			return Response.status(200).entity("Deleted").build();
+		else
+			return Response.status(400).entity("Could not delete").build();
+
 	}
 	
 	

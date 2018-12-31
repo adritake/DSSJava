@@ -134,7 +134,15 @@ public class MainTest {
 		ClientResponse respuesta = servicio.path("producto").accept("application/json").type("application/json").put(ClientResponse.class,p);			
 		System.out.println(respuesta.getEntity(String.class));
 
-	
+		p = new Producto(11,"");
+		respuesta = servicio.path("producto").accept("application/json").type("application/json").delete(ClientResponse.class,p);			
+		System.out.println(respuesta.getEntity(String.class));
+		
+		p = new Producto(3,"Json updated");
+		respuesta = servicio.path("producto").accept("application/json").type("application/json").post(ClientResponse.class,p);			
+		System.out.println(respuesta.getEntity(String.class));
+		
+
 		
 	}
 	
