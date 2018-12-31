@@ -1,51 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>DSSJava</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  
-  <servlet>
-      <servlet-name>Farmacia Servlet</servlet-name>
-      <servlet-class>REST.Farmacia</servlet-class>
-  </servlet>
-  <servlet>
-      <servlet-name>Usuario Servlet</servlet-name>
-      <servlet-class>REST.Usuarios</servlet-class>
-  </servlet>
-  <servlet>
-      <servlet-name>Order Servlet</servlet-name>
-      <servlet-class>REST.Orders</servlet-class>
-  </servlet>
-  <servlet>
-      <servlet-name>Producto Servlet</servlet-name>
-      <servlet-class>REST.Productos</servlet-class>
-  </servlet>
-  
-  
-  
-  
-  <servlet-mapping>
-      <servlet-name>Farmacia Servlet</servlet-name>
-      <url-pattern>/farmacia</url-pattern>
-   </servlet-mapping>
-   <servlet-mapping>
-      <servlet-name>Usuario Servlet</servlet-name>
-      <url-pattern>/usuario</url-pattern>
-   </servlet-mapping>
-   <servlet-mapping>
-      <servlet-name>Order Servlet</servlet-name>
-      <url-pattern>/order</url-pattern>
-   </servlet-mapping>
-   <servlet-mapping>
-      <servlet-name>Producto Servlet</servlet-name>
-      <url-pattern>/producto</url-pattern>
-   </servlet-mapping>
-   
-   
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+    id="WebApp_ID" version="3.1">
+    <display-name>Consorcio</display-name>
+
+    <!-- Define ServletContainer of Jersey -->
+    <servlet>
+        <servlet-name>Consorcio servlet</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <!-- Define the ResourceConfig class -->
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>REST</param-value>
+        </init-param>
+        <init-param>
+			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+			<param-value>true</param-value>
+		</init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- Map all the URLs to the Jersey ServletContainer -->
+    <servlet-mapping>
+        <servlet-name>Consorcio servlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
 </web-app>

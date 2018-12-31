@@ -1,37 +1,33 @@
 package REST;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import facade.ProductoFacade;
-import servidor.Order;
 import servidor.Producto;
 
-public class Productos extends HttpServlet {
+@Path("/producto")
+public class Productos {
 
 	private ProductoFacade profac;
 	
 	public Productos() {
-		profac = new ProductoFacade();
+		//profac = new ProductoFacade();
 	}
 	
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-        
-		ArrayList<Producto> productos = profac.getProductos();
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	public Producto getProductos() {
 		
+		Producto p = new Producto(1234,"Ibuprofeno");
+		return p;
 		
-		request.setAttribute("productos", productos);
-			
-		
-        request.getRequestDispatcher("/WEB-INF/ListaProductos.jsp").forward(request, response);
-
 	}
+	
+	
 	
 }

@@ -1,5 +1,7 @@
 package servidor;
 
+
+
 public class Producto {
 
 	private int productoID;
@@ -16,6 +18,14 @@ public class Producto {
 	
 	public String getNombre() {
 		return nombre;
+	}
+	
+	public void setProductoID(int productoID) {
+		this.productoID = productoID;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	@Override
