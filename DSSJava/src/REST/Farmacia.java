@@ -8,11 +8,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import facade.FarmaciaFacade;
 import servidor.Usuario;
 
-public class Farmacia extends HttpServlet{
+
+@Path("/farmacia")
+public class Farmacia{
 	
 	private FarmaciaFacade farmafac;
 	
@@ -21,16 +27,13 @@ public class Farmacia extends HttpServlet{
 	}
 	
 	
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	public ArrayList<servidor.Farmacia> getFarmacias(){
 		
 		ArrayList<servidor.Farmacia> farmacias = farmafac.getFarmacias();
 		
-		request.setAttribute("farmacias", farmacias);
-        
-        request.getRequestDispatcher("/WEB-INF/ListaFarmacias.jsp").forward(request, response);
-
+		return farmacias;
 	}
 
 }

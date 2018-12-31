@@ -16,15 +16,15 @@ public class Productos {
 	private ProductoFacade profac;
 	
 	public Productos() {
-		//profac = new ProductoFacade();
+		profac = new ProductoFacade();
 	}
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public Producto getProductos() {
+	public ArrayList<Producto> getProductos() {
 		
-		Producto p = new Producto(1234,"Ibuprofeno");
-		return p;
+		ArrayList<Producto> productos = profac.getProductos();
+		return productos;
 		
 	}
 	

@@ -7,11 +7,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import facade.UsuarioFacade;
 import servidor.Usuario;
 
-public class Usuarios extends HttpServlet {
+@Path("/usuario")
+public class Usuarios{
 
 	UsuarioFacade userfac;
 	
@@ -19,17 +24,13 @@ public class Usuarios extends HttpServlet {
 		userfac = new UsuarioFacade();
 	}
 	
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	public ArrayList<Usuario> getUsuarios(){
         
 		ArrayList<Usuario> usuarios = userfac.getUsuarios();
 		
-		
-		request.setAttribute("usuarios", usuarios);
-			
-		
-        request.getRequestDispatcher("/WEB-INF/ListaUsuarios.jsp").forward(request, response);
+		return usuarios;
 
 	}
 	
