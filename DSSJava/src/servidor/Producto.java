@@ -7,6 +7,11 @@ public class Producto {
 	private int productoID;
 	private String nombre;
 	
+	public Producto() {
+		productoID = 0;
+		nombre = "";
+	}
+	
 	public Producto( int productoID, String nombre) {
 		this.productoID = productoID;
 		this.nombre = nombre;

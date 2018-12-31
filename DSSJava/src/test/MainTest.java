@@ -1,6 +1,18 @@
 package test;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriBuilder;
+
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.api.json.JSONConfiguration;
 
 import facade.FarmaciaFacade;
 import facade.OrderFacade;
@@ -85,7 +97,7 @@ public class MainTest {
 			System.out.println(pr.getProductoID() + " " + pr.getNombre());
 		
 		profac.close();
-		*/
+		
 		
 		UsuarioFacade userfac = new UsuarioFacade();
 
@@ -109,7 +121,21 @@ public class MainTest {
 			System.out.println(u.getNombre()+ " " + u.getNombreUsuario() + " " + u.getCorreo()+ " " + u.getContrasena());
 		
 		userfac.close();
+		*/
+		
+		Producto p = new Producto(9999, "producto json");
+		
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		
+		WebResource servicio = client.resource(UriBuilder.fromUri("http://localhost:8080/DSSJava").build());
 
+		ClientResponse respuesta = servicio.path("producto").accept("application/json").type("application/json").put(ClientResponse.class,p);			
+		System.out.println(respuesta.getEntity(String.class));
+
+	
+		
 	}
 	
 }
