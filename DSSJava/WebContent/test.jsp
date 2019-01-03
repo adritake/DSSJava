@@ -13,11 +13,8 @@
 	<%@ page import="servidor.Producto" %>
 	<%
 	
-		ProductoFacade profac = new ProductoFacade();
-		ArrayList<Producto> productos = profac.getProductos();
-		
-		for(Producto p: productos)
-			out.println("<p>" + p +"</p>");
+		String atributo = request.getParameter("test");
+		out.println("Atributo = " + atributo);
 	
 	%>
 </body>

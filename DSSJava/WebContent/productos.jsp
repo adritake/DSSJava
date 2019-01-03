@@ -34,17 +34,27 @@
 		<%@ page import="servidor.Producto" %>
 		<%
 		
-			Object atributo = session.getAttribute("aniadirNombre");
-		
-			if(atributo != null){
-				String test1 = atributo.toString();
-				out.println("<li>" + test1 +"</li>");
-			}
-			else
-				out.println("BIG NOPE");
-
-			
 			ProductoFacade profac = new ProductoFacade();
+			
+			String aniadirNombre = request.getParameter("aniadirNombre");
+			String borrarID = request.getParameter("borrarID");
+			String modificarID = request.getParameter("modificarID");
+			String modificarNombre = request.getParameter("modificarNombre");
+
+		
+			if(aniadirNombre != null){
+				Producto p = new Producto(0,aniadirNombre);
+				profac.newProducto(p);
+			}
+			if(borrarID != null){
+				Producto p = new Producto(Integer.parseInt(borrarID),"");
+				profac.deleteProducto(p);
+			}
+			if(modificarID != null && modificarNombre != null){
+				Producto p = new Producto(Integer.parseInt(modificarID),modificarNombre);
+				profac.updateProducto(p);
+			}
+			
 			ArrayList<Producto> productos = profac.getProductos();
 			
 			for(Producto p: productos)
@@ -54,17 +64,33 @@
    </ul>
 </div>
 <div class="wrapper row2">
-	Añadir producto:
-	<form action="productos.jsp" method="get">
-		<input type="text" name="aniadirNombre" placeholder="Nombre"><br>
-		<input type="submit" value="Añadir">
-		<% session.setAttribute("aniadirNombre", request.getParameter("aniadirNombre")); %>
-	</form>
-	Borrar producto:
-	<form action="http://localhost:8080/DSSJava/rest/producto" method = "delete">
-		<input type="text" name="borrarID" placeholder="ID"><br>
-		<input type="submit" value="Borrar">
-	</form>
+	
+	<table>
+		<tr>
+			<th>
+				Añadir producto:
+				<form action="productos.jsp" method="post">
+					<input type="text" name="aniadirNombre" placeholder="Nombre"><br>
+					<input type="submit" value="Añadir">
+				</form>	
+			</th>
+			<th>
+				Borrar producto:
+				<form action="productos.jsp" method = "post">
+					<input type="text" name="borrarID" placeholder="ID"><br>
+					<input type="submit" value="Borrar">
+				</form>
+			</th>
+			<th>
+				Modificar producto:
+				<form action="productos.jsp" method = "post">
+					<input type="text" name="modificarID" placeholder="ID"><br>
+					<input type="text" name="modificarNombre" placeholder="Nuevo nombre"><br>
+					<input type="submit" value="Modificar">
+				</form>
+			</th>
+		</tr>
+	</table>
 
 </div>
 <!-- Footer -->

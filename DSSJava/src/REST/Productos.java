@@ -10,6 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -51,10 +52,13 @@ public class Productos {
 	}
 	
 	@PUT
-	public Response addProducto(@PathParam("aniadirNombre") String nombre) {
+	public Response addProducto(@QueryParam("aniadirNombre") String nombre) {
 		
 		Producto pro = new Producto(0,nombre);
-		boolean added = profac.newProducto(pro);
+		boolean added = false;
+		
+		if(nombre != null)
+			added = profac.newProducto(pro);
 			
 		if (added)
 			return Response.status(201).entity("Added").build();
@@ -64,11 +68,16 @@ public class Productos {
 	}
 	
 	@POST
-	@Consumes({MediaType.APPLICATION_JSON})
-	public Response updateProducto(Producto pro) {
+	public Response updateProducto(@QueryParam("id") String id, @QueryParam("modificarNombre") String nombre) {
+		
+		boolean updated = false;
+		Producto pro = new Producto(Integer.parseInt(id),nombre);
+		
+		if(id != null || nombre != null)
+			updated = profac.updateProducto(pro);
 		
 		
-		boolean updated = profac.updateProducto(pro);
+		
 		if (updated)
 			return Response.status(200).entity("Updated").build();
 		else
@@ -77,12 +86,14 @@ public class Productos {
 	}
 	
 	@DELETE
-	@Consumes({MediaType.APPLICATION_JSON})
-	public Response deleteProducto(@PathParam("borrarID") String id) {
+	public Response deleteProducto(@QueryParam("id") String id, @QueryParam("borrarNombre") String nombre) {
 		
 		Producto pro = new Producto(Integer.parseInt(id),"");
 		
-		boolean deleted = profac.deleteProducto(pro);
+		boolean deleted = false;
+		
+		if(id!= null)
+			deleted = profac.deleteProducto(pro);
 		
 		if (deleted)
 			return Response.status(200).entity("Deleted").build();

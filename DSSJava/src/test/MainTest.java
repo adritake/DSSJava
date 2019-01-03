@@ -121,7 +121,7 @@ public class MainTest {
 			System.out.println(u.getNombre()+ " " + u.getNombreUsuario() + " " + u.getCorreo()+ " " + u.getContrasena());
 		
 		userfac.close();
-		*/
+		
 		
 		Producto p = new Producto(9999, "producto json");
 		
@@ -141,8 +141,14 @@ public class MainTest {
 		p = new Producto(3,"Json updated");
 		respuesta = servicio.path("producto").accept("application/json").type("application/json").post(ClientResponse.class,p);			
 		System.out.println(respuesta.getEntity(String.class));
+		*/
 		
+		ClientConfig clientConfig = new DefaultClientConfig();
+		Client client = Client.create(clientConfig);
+		WebResource servicio = client.resource(UriBuilder.fromUri("http://localhost:8080/DSSJava/rest").build());
+		ClientResponse respuesta = servicio.path("producto").queryParam("id", "6").delete(ClientResponse.class);
 
+		System.out.println(respuesta);
 		
 	}
 	
