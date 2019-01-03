@@ -8,6 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -50,10 +51,9 @@ public class Productos {
 	}
 	
 	@PUT
-	@Consumes({MediaType.APPLICATION_JSON})
-	public Response addProducto(Producto pro) {
+	public Response addProducto(@PathParam("aniadirNombre") String nombre) {
 		
-		
+		Producto pro = new Producto(0,nombre);
 		boolean added = profac.newProducto(pro);
 			
 		if (added)
@@ -78,8 +78,9 @@ public class Productos {
 	
 	@DELETE
 	@Consumes({MediaType.APPLICATION_JSON})
-	public Response deleteProducto(Producto pro) {
+	public Response deleteProducto(@PathParam("borrarID") String id) {
 		
+		Producto pro = new Producto(Integer.parseInt(id),"");
 		
 		boolean deleted = profac.deleteProducto(pro);
 		
