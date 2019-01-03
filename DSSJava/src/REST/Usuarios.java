@@ -17,6 +17,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+
+import com.google.gson.Gson;
+
 import facade.UsuarioFacade;
 import servidor.Producto;
 import servidor.Usuario;
@@ -32,11 +38,24 @@ public class Usuarios{
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public ArrayList<Usuario> getUsuarios(){
+	public JSONObject getUsuarios(){
         
-		ArrayList<Usuario> usuarios = userfac.getUsuarios();
 		
-		return usuarios;
+		Gson g = new Gson();
+		
+		ArrayList<Usuario> usuarios = userfac.getUsuarios();
+		String array = new Gson().toJson(usuarios);
+		
+		JSONObject obj = new JSONObject();
+		
+		try {
+			obj.put("usuarios", array);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return obj;
 
 	}
 	
