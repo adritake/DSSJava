@@ -52,7 +52,7 @@ public class Productos {
 	}
 	
 	@PUT
-	public Response addProducto(@QueryParam("aniadirNombre") String nombre) {
+	public Response addProducto(@QueryParam("nombre") String nombre) {
 		
 		Producto pro = new Producto(0,nombre);
 		boolean added = false;
@@ -68,7 +68,7 @@ public class Productos {
 	}
 	
 	@POST
-	public Response updateProducto(@QueryParam("id") String id, @QueryParam("modificarNombre") String nombre) {
+	public Response updateProducto(@QueryParam("id") String id, @QueryParam("nombre") String nombre) {
 		
 		boolean updated = false;
 		Producto pro = new Producto(Integer.parseInt(id),nombre);
@@ -86,7 +86,7 @@ public class Productos {
 	}
 	
 	@DELETE
-	public Response deleteProducto(@QueryParam("id") String id, @QueryParam("borrarNombre") String nombre) {
+	public Response deleteProducto(@QueryParam("id") String id, @QueryParam("nombre") String nombre) {
 		
 		Producto pro = new Producto(Integer.parseInt(id),"");
 		
