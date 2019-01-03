@@ -45,7 +45,6 @@ public class ProductoFacade {
 		String insertarProducto = "INSERT INTO PRODUCTO"
 				+ "(NOMBRE) VALUES"
 				+ "(?)";
-		System.out.println(insertarProducto);
 
 		try {
 			pstmt = this.con.prepareStatement(insertarProducto);

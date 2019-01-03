@@ -8,6 +8,23 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="styles/layout.css" type="text/css">
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </head>
 <body>
 <div class="wrapper row1">
@@ -57,8 +74,22 @@
 			
 			ArrayList<Producto> productos = profac.getProductos();
 			
-			for(Producto p: productos)
-				out.println("<li>" + p +"</li>");
+			out.println("<table>");
+			out.println("<tr>");
+			out.println("<th> ID </th>");
+			out.println("<th> Nombre </th>");
+			out.println("</tr>");
+			
+
+			for(Producto p: productos){
+				out.println("<tr>");
+				out.println("<td>" + p.getProductoID() +"</td>");
+				out.println("<td>" + p.getNombre() +"</td>");
+				out.println("</tr>");
+
+			}
+			out.println("</table>");
+
 		
 		%>
    </ul>
