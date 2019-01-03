@@ -22,6 +22,8 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import facade.UsuarioFacade;
 import servidor.Producto;
@@ -38,24 +40,21 @@ public class Usuarios{
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public JSONObject getUsuarios(){
+	public String getUsuarios(){
         
-		
-		Gson g = new Gson();
-		
+			
 		ArrayList<Usuario> usuarios = userfac.getUsuarios();
-		String array = new Gson().toJson(usuarios);
+		String jsonUsuarios = new Gson().toJson(usuarios);
 		
 		JSONObject obj = new JSONObject();
-		
 		try {
-			obj.put("usuarios", array);
+			obj.put("usuarios", jsonUsuarios);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return obj;
+		return obj.toString().replace("\\","");
 
 	}
 	

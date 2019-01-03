@@ -12,6 +12,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+
+import com.google.gson.Gson;
+
 import facade.OrderFacade;
 import servidor.Order;
 import servidor.Usuario;
@@ -27,11 +32,20 @@ public class Orders{
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public ArrayList<Order> getOrders(){
+	public String getOrders(){
         
 		ArrayList<Order> orders = orfac.getOrders();
+		String jsonOrders = new Gson().toJson(orders);
 		
-		return orders;
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("orders", jsonOrders);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return obj.toString().replace("\\","");
 	}
 	
 	

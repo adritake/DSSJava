@@ -18,6 +18,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+
+import com.google.gson.Gson;
+
 import facade.FarmaciaFacade;
 import servidor.Producto;
 import servidor.Usuario;
@@ -35,11 +40,20 @@ public class Farmacia{
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public ArrayList<servidor.Farmacia> getFarmacias(){
+	public String getFarmacias(){
 		
 		ArrayList<servidor.Farmacia> farmacias = farmafac.getFarmacias();
+		String jsonFarmacias = new Gson().toJson(farmacias);
 		
-		return farmacias;
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("farmacias", jsonFarmacias);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return obj.toString().replace("\\","");
 	}
 	
 	@PUT

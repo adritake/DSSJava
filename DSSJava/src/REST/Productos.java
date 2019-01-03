@@ -12,8 +12,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+
+import com.google.gson.Gson;
+
 import facade.ProductoFacade;
 import servidor.Producto;
+import servidor.Usuario;
 
 @Path("/producto")
 public class Productos {
@@ -26,10 +32,20 @@ public class Productos {
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public ArrayList<Producto> getProductos() {
+	public String getProductos() {
 		
 		ArrayList<Producto> productos = profac.getProductos();
-		return productos;
+		String jsonProductos = new Gson().toJson(productos);
+		
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("productos", jsonProductos);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return obj.toString().replace("\\","");
 		
 	}
 	
