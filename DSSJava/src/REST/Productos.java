@@ -73,7 +73,7 @@ public class Productos {
 		boolean updated = false;
 		Producto pro = new Producto(Integer.parseInt(id),nombre);
 		
-		if(id != null || nombre != null)
+		if(id != null && nombre != null)
 			updated = profac.updateProducto(pro);
 		
 		
