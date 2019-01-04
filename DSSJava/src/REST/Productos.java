@@ -39,15 +39,7 @@ public class Productos {
 		ArrayList<Producto> productos = profac.getProductos();
 		String jsonProductos = new Gson().toJson(productos);
 		
-		JSONObject obj = new JSONObject();
-		try {
-			obj.put("productos", jsonProductos);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return obj.toString().replace("\\","");
+		return jsonProductos;
 		
 	}
 	

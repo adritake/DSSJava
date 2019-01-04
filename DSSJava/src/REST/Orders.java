@@ -43,15 +43,7 @@ public class Orders{
 		ArrayList<Order> orders = orfac.getOrders();
 		String jsonOrders = new Gson().toJson(orders);
 		
-		JSONObject obj = new JSONObject();
-		try {
-			obj.put("orders", jsonOrders);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return obj.toString().replace("\\","");
+		return jsonOrders;
 	}
 	
 	@PUT

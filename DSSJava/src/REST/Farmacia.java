@@ -46,15 +46,8 @@ public class Farmacia{
 		ArrayList<servidor.Farmacia> farmacias = farmafac.getFarmacias();
 		String jsonFarmacias = new Gson().toJson(farmacias);
 		
-		JSONObject obj = new JSONObject();
-		try {
-			obj.put("farmacias", jsonFarmacias);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		return obj.toString().replace("\\","");
+		return jsonFarmacias;
 	}
 	
 	@PUT

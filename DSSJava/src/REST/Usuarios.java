@@ -39,16 +39,8 @@ public class Usuarios{
 		ArrayList<Usuario> usuarios = userfac.getUsuarios();
 		String jsonUsuarios = new Gson().toJson(usuarios);
 		
-		JSONObject obj = new JSONObject();
-		try {
-			obj.put("usuarios", jsonUsuarios);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		return jsonUsuarios;
 		
-		return obj.toString().replace("\\","");
-
 	}
 	
 	@PUT

@@ -2,11 +2,15 @@ package test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 
-
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -141,7 +145,7 @@ public class MainTest {
 		p = new Producto(3,"Json updated");
 		respuesta = servicio.path("producto").accept("application/json").type("application/json").post(ClientResponse.class,p);			
 		System.out.println(respuesta.getEntity(String.class));
-		*/
+		
 		
 		ClientConfig clientConfig = new DefaultClientConfig();
 		Client client = Client.create(clientConfig);
@@ -149,6 +153,19 @@ public class MainTest {
 		ClientResponse respuesta = servicio.path("producto").queryParam("id", "6").delete(ClientResponse.class);
 
 		System.out.println(respuesta);
+		*/
+		
+		ClientConfig clientConfig = new DefaultClientConfig();
+		Client client = Client.create(clientConfig);
+		WebResource servicio = client.resource(UriBuilder.fromUri("http://localhost:8080/DSSJava/rest").build());
+		
+		String respuesta = servicio.path("usuario").accept("application/json").get(String.class);
+		Gson gson = new Gson();
+		ArrayList<servidor.Usuario> arr = gson.fromJson(respuesta, new TypeToken<ArrayList<Usuario>>(){}.getType());
+		
+		for(Usuario u : arr)
+			System.out.println(u);
+		
 		
 	}
 	
