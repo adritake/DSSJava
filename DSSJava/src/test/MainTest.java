@@ -159,9 +159,9 @@ public class MainTest {
 		Client client = Client.create(clientConfig);
 		WebResource servicio = client.resource(UriBuilder.fromUri("http://localhost:8080/DSSJava/rest").build());
 		
-		String respuesta = servicio.path("usuario").accept("application/json").get(String.class);
+		String respuesta = servicio.path("usuario").get(String.class);
 		Gson gson = new Gson();
-		ArrayList<servidor.Usuario> arr = gson.fromJson(respuesta, new TypeToken<ArrayList<Usuario>>(){}.getType());
+		ArrayList<Usuario> arr = gson.fromJson(respuesta, new TypeToken<ArrayList<Usuario>>(){}.getType());
 		
 		for(Usuario u : arr)
 			System.out.println(u);

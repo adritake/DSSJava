@@ -10,6 +10,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -44,11 +45,17 @@ public class Usuarios{
 	}
 	
 	@PUT
-	@Consumes({MediaType.APPLICATION_JSON})
-	public Response addUsuario(Usuario usr) {
+	public Response addUsuario(@QueryParam("username") String username,
+							   @QueryParam("nombre") String nombre,
+							   @QueryParam("correo") String correo,
+							   @QueryParam("contrasena")String contrasena){
 		
+		Usuario usr = new Usuario(nombre, username, correo, contrasena);
 		
-		boolean added = userfac.newUsuario(usr);
+		boolean added = false;
+		
+		if(username != null && nombre != null && correo != null && contrasena != null)
+			added = userfac.newUsuario(usr);
 			
 		if (added)
 			return Response.status(201).entity("Added").build();
@@ -58,12 +65,19 @@ public class Usuarios{
 	}
 	
 	@POST
-	@Consumes({MediaType.APPLICATION_JSON})
-	public Response updateUsuario(Usuario usr) {
+	public Response updateUsuario(@QueryParam("username") String username,
+								  @QueryParam("nombre") String nombre,
+								  @QueryParam("correo") String correo,
+								  @QueryParam("contrasena")String contrasena) {
 		
+		Usuario usr = new Usuario(nombre, username, correo, contrasena);
+
+		boolean updated = false;
 		
-		boolean updated = userfac.updateUsuario(usr);
+		if(username != null && nombre != null && correo != null && contrasena != null)
+			updated = userfac.updateUsuario(usr);
 		
+		 
 		if (updated)
 			return Response.status(200).entity("Updated").build();
 		else
@@ -72,11 +86,14 @@ public class Usuarios{
 	}
 	
 	@DELETE
-	@Consumes({MediaType.APPLICATION_JSON})
-	public Response deleteUsuario(Usuario usr) {
+	public Response deleteUsuario(@QueryParam("username") String username) {
 		
+		Usuario usr = new Usuario("", username, "", "");
+
+		boolean deleted = false;
 		
-		boolean deleted = userfac.deleteUsuario(usr);
+		if(username != null)
+			deleted = userfac.deleteUsuario(usr);
 		
 		if (deleted)
 			return Response.status(200).entity("Deleted").build();
