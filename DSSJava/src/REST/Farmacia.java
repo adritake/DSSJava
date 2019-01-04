@@ -96,7 +96,6 @@ public class Farmacia{
 	}
 	
 	@DELETE
-	@Consumes({MediaType.APPLICATION_JSON})
 	public Response deleteFarmacia(@QueryParam("id") String ID,
 								   @QueryParam("nombre") String nombre, 
 								   @QueryParam("latitud") String latitud,
