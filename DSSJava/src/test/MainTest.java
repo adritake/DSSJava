@@ -163,6 +163,22 @@ public class MainTest {
 		Gson gson = new Gson();
 		ArrayList<Usuario> arr = gson.fromJson(respuesta, new TypeToken<ArrayList<Usuario>>(){}.getType());
 		
+		System.out.println("Usuarios: ");
+		for(Usuario u : arr)
+			System.out.println(u);
+		
+		
+		ClientResponse respuesta2 = servicio.path("usuario").queryParam("username", "samaLastHope")
+											.queryParam("nombre", "Sergio")
+											.queryParam("correo", "sergio@correo")
+											.queryParam("contrasena", "contrasena")
+											.put(ClientResponse.class);
+		
+		System.out.println(respuesta2);
+		
+		respuesta = servicio.path("usuario").get(String.class);
+		arr = gson.fromJson(respuesta, new TypeToken<ArrayList<Usuario>>(){}.getType());
+		System.out.println("Usuarios: ");
 		for(Usuario u : arr)
 			System.out.println(u);
 		

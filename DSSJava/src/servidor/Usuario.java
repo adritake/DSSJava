@@ -54,7 +54,7 @@ public class Usuario {
 	}
 	
 	public String toString() {
-		return "Nombre= " + nombre + " UserName= " + nombreUsuario + " Correo = " + correo;
+		return "Nombre = " + nombre + " UserName = " + nombreUsuario + " Correo = " + correo;
 	}
 	
 }
