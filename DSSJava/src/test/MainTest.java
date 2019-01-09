@@ -182,6 +182,22 @@ public class MainTest {
 		for(Usuario u : arr)
 			System.out.println(u);
 		
+		respuesta2 = servicio.path("usuario").queryParam("username", "samaLastHope")
+				.queryParam("nombre", "Sergio Samaniego")
+				.queryParam("correo", "sergio@correo")
+				.queryParam("contrasena", "contrasena")
+				.post(ClientResponse.class);
+
+		System.out.println(respuesta2);
+		
+		respuesta = servicio.path("usuario").get(String.class);
+		arr = gson.fromJson(respuesta, new TypeToken<ArrayList<Usuario>>(){}.getType());
+		System.out.println("Usuarios: ");
+		for(Usuario u : arr)
+		System.out.println(u);
+		
+		
+		
 		
 	}
 	
