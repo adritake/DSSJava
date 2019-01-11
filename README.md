@@ -11,6 +11,7 @@ Se han usado las siguientes dependencias:
 - jersey-json 1.9
 - jersey-client 1.9
 - gson 2.8.0
+
 Se ha usado como server Tomcat v9.0. Para la base de datos se ha usado MySQL con PHPMyAdmin alojada en
 un servidor Apacche todo ello controlado por XAMPP Control Panel v3.2.2.
 
